@@ -6,8 +6,8 @@ import { ApolloServer } from 'apollo-server-express';
 var fs = require('fs');
 var http = require('http');
 var https = require('https');
-var privateKey  = fs.readFileSync('C:\\Certbot\\live\\dmapi.walztech.com\\privkey.pem', 'utf8');
-var certificate = fs.readFileSync('C:\\Certbot\\live\\dmapi.walztech.com\\fullchain.pem', 'utf8');
+var privateKey  = fs.readFileSync('C:\\Certbot\\live\\api.dreammakers.ae\\privkey.pem', 'utf8');
+var certificate = fs.readFileSync('C:\\Certbot\\live\\api.dreammakers.ae\\fullchain.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 
