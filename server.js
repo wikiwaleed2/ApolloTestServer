@@ -15,6 +15,7 @@ import typeDefs  from './data/schema';
 import resolvers from './data/resolvers';
 
 const PORT = process.env.PORT ||  5000;
+const PORT_HTTP = process.env.PORT_HTTP ||  6000;
 
 const app = express();
 
@@ -23,18 +24,16 @@ apolloServer.applyMiddleware({ app });
 
 const httpsServer = https.createServer(credentials, app);
 apolloServer.installSubscriptionHandlers(httpsServer);
-
+//------------------------------------------------------------------------------//
 httpsServer.listen({ port: PORT }, () =>{
   console.log(`🚀 Server ready at https://localhost:${PORT}${apolloServer.graphqlPath}`)
   console.log(`🚀 Subscriptions ready at wss://localhost:${PORT}${apolloServer.subscriptionsPath}`)
 })
+//------------------------------------------------------------------------------//
+const httpServer = http.createServer(app);
+apolloServer.installSubscriptionHandlers(httpServer);
 
-// var httpServer = http.createServer(app);
-// var httpsServer = https.createServer(credentials, app);
-
-// httpServer.listen(4080, () => {
-  // console.log("HTTP server starting on port : " + 4080)
-// });
-// httpsServer.listen(4000, () => {
-  // console.log("HTTP'S' server starting on port : " + 4000)
-// });
+httpServer.listen({ port: PORT_HTTP }, () =>{
+  console.log(`🚀 Server ready at http://localhost:${PORT_HTTP}${apolloServer.graphqlPath}`)
+  console.log(`🚀 Subscriptions ready at ws://localhost:${PORT_HTTP}${apolloServer.subscriptionsPath}`)
+})
