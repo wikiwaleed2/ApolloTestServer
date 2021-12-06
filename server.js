@@ -15,7 +15,7 @@ import typeDefs  from './data/schema';
 import resolvers from './data/resolvers';
 
 const PORT = process.env.PORT ||  5000;
-const PORT_HTTP = process.env.PORT_HTTP ||  6000;
+const PORT_HTTP = process.env.PORT_HTTP ||  5080;
 
 const app = express();
 
